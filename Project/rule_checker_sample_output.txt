@@ -1,0 +1,100 @@
+
+=== C001 [VLAN] PC1 (VLAN 10) cannot ping PC2 (VLAN 10) on the same switch.
+  [High    ] access_vlan_mismatch: Fa0/1 is in VLAN 10 while Fa0/2 is shown under VLAN 20.
+
+=== C002 [VLAN] All PCs in VLAN 30 lost connectivity to the VLAN 30 server on the othe
+  [High    ] trunk_allowed_vlan_missing: VLAN 30 is absent from the trunk allowed-VLAN list.
+
+=== C003 [VLAN] New VLAN 40 hosts get link light but cannot reach anything, even ARP f
+  [High    ] vlan_id_not_in_brief: Access VLAN 40 is referenced but is absent from the VLAN brief.
+
+=== C004 [VLAN] CDP native VLAN mismatch warning appears on SW1 and SW2 console.
+  [High    ] native_vlan_mismatch: %CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on GigabitEthernet0/2 (1), with Switch2 GigabitEthernet0/2 (99).
+
+=== C005 [VLAN] PC in VLAN 30 gets an IP from DHCP but cannot reach anything, includin
+  [High    ] trunk_allowed_vlan_missing: VLAN 30 is absent from the trunk allowed-VLAN list.
+
+=== C006 [Gateway] PC1 can ping other devices in its own subnet but cannot reach anything
+  (no deterministic issues flagged)
+
+=== C007 [Gateway] PC gets an IP but 'gateway ping works' intermittently fails and inter-
+  [Critical] interface_admin_down: Vlan10                 192.168.10.1    administratively down up
+
+=== C008 [Gateway] Two PCs on the same subnet have intermittent connectivity and IP confl
+  [High    ] duplicate_ip: %SYS-3-DUPADDR: Duplicate address 192.168.10.1 on FastEthernet0/0
+
+=== C009 [Gateway] PC can reach some hosts in the same building but times out reaching th
+  [Medium  ] mask_gateway_mismatch_risk: Host uses /25; verify that the host IP and gateway are in the same /25 subnet.
+  [High    ] subnet_gateway_mismatch: Host 192.168.10.140/255.255.255.128 is not in the subnet containing gateway 192.168.10.1.
+  [High    ] gateway_mismatch: Gateway 192.168.10.1 is outside the host subnet 192.168.10.128/25.
+
+=== C010 [DHCP] New PCs in VLAN 20 fail to get an IP address; older PCs still work fin
+  [High    ] dhcp_pool_exhausted: 5/5 addresses leased.
+
+=== C011 [DHCP] All PCs in VLAN 30 (different subnet from the DHCP server) fail to rec
+  [High    ] missing_ip_helper: No ip helper-address is configured on the gateway interface.
+
+=== C012 [DHCP] PCs in VLAN 20 receive an IP address but it is unreachable from the re
+  [High    ] dhcp_pool_network_mismatch: DHCP pool network 192.168.200.0/24 does not match default-router 192.168.20.1.
+
+=== C013 [DHCP] Server and printer at fixed addresses .1-.10 are randomly handed out t
+  (no deterministic issues flagged)
+
+=== C014 [DNS] PC can ping the web server by IP address but 'ping www.netsage.local' 
+  [High    ] dns_timeout: Pinging www.netsage.local ... DNS request timed out.
+
+=== C015 [DNS] One PC in the lab cannot resolve internal hostnames while every other 
+  (no deterministic issues flagged)
+
+=== C016 [DNS] DNS resolves the web server name correctly but the website still does 
+  [Info    ] acl_deny_rule: 10 deny tcp any host 192.168.30.10 eq 80
+
+=== C017 [DNS] Internal clients can resolve www.netsage.local but it points to the wr
+  (no deterministic issues flagged)
+
+=== C018 [Routing] PC gets an IP but cannot reach a server in VLAN 30; gateway ping works
+  [High    ] missing_route: ! 192.168.30.0/24 not present
+
+=== C019 [Routing] Remote branch (192.168.40.0/24) is unreachable even though a static ro
+  [High    ] inactive_route: S  192.168.40.0/24 [1/0] via 192.168.1.254, inactive
+
+=== C020 [Routing] OSPF neighbors on R1 and R2 never form (stuck in EXSTART/DOWN); no rou
+  [High    ] ospf_area_mismatch: OSPF evidence shows the shared network configured in area 0 and area 1.
+
+=== C021 [Routing] A valid route exists to the destination but traffic is still being sil
+  [Info    ] acl_deny_rule: 10 deny ip 192.168.10.0 0.0.0.255 192.168.50.0 0.0.0.255
+
+=== C022 [ACL] PC1 (192.168.10.10) cannot SSH to the server, but every other PC in VL
+  [Info    ] acl_deny_rule: 10 deny tcp host 192.168.10.10 any eq 22
+
+=== C023 [ACL] An ACL intended to restrict outbound traffic from VLAN20 seems to have
+  [Medium  ] acl_direction_out: ip access-group 105 out
+
+=== C024 [ACL] Users report that ALL traffic through R1, even permitted services, is 
+  [High    ] acl_implicit_deny_risk: ACL has deny entries but no explicit permit; implicit deny-all applies.
+  [Info    ] acl_deny_rule: 10 deny tcp any any eq 23
+  [Info    ] acl_deny_rule: 20 deny tcp any any eq 21
+
+=== C025 [ACL] A specific host (192.168.10.50) that should be allowed HTTP access is 
+  [Info    ] acl_deny_rule: 10 deny tcp 192.168.10.0 0.0.0.255 any eq 80
+  [High    ] acl_rule_order_issue: Broad deny at sequence 10 precedes a host-specific permit.
+
+=== C026 [NAT] Internal LAN hosts (192.168.10.0/24) cannot reach any internet-simulat
+  [High    ] nat_overload_missing: No active NAT translations and no overload statement found.
+
+=== C027 [NAT] Only some internal hosts can reach the outside network through NAT; ot
+  [High    ] nat_acl_incomplete: NAT ACL covers only 192.168.10.0/25 rather than the intended /24.
+
+=== C028 [NAT] External users cannot reach the internal web server via the router's p
+  [Medium  ] static_nat_port_mismatch: Static NAT maps public port 80 to internal port 8080.
+
+=== C029 [Wireless] Laptop shows the correct SSID but fails authentication every time it t
+  [High    ] wireless_passphrase_mismatch: Wireless client and AP passphrases do not match.
+
+=== C030 [Wireless] Guest laptops cannot see the 'NetSage-Guest' SSID at all, though staff
+  [Medium  ] ssid_broadcast_disabled: broadcast-ssid disable
+
+=== C031 [Wireless] Guest Wi-Fi users can reach the internal file server, violating the in
+  [High    ] guest_isolation_missing: Guest SVI has no isolation ACL applied.
+
+--- Total deterministic findings across all cases: 32 ---

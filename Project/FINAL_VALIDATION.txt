@@ -1,0 +1,66 @@
+NETSAGE AI — FINAL PRE-SUBMISSION VALIDATION
+
+Status: PASS
+
+Problem statement coverage
+- Case dataset: 31 cases (minimum 30)
+- VLAN: 5
+- Gateway: 4
+- DHCP: 4
+- DNS: 4
+- Routing: 4
+- ACL: 4
+- NAT: 3
+- Wireless: 3
+- Required case fields: present
+- Duplicate case IDs: none
+
+AI diagnosis validation
+- All 31 cases produce the required structured fields.
+- All evidence entries are literal substrings of the supplied show output.
+- Confidence is bounded to 0–100.
+- Each diagnosis includes a next command and proposed fix steps.
+- No diagnosis claims that a fix has already been applied.
+
+Deterministic checker
+- Executes successfully across all 31 cases.
+- 32 deterministic findings generated across the supplied lab evidence.
+- Includes checks for duplicate IPs, masks/gateway, interface state, VLAN/trunk,
+  routes, ACLs, DHCP, NAT, DNS and wireless configuration.
+
+Human review / safety
+- 31 diagnoses seeded.
+- 31 cases have a human review record.
+- Review decisions: 26 Accepted, 4 Edited, 1 Rejected.
+- Responsible AI log: 5 corrected/rejected cases.
+- API requires a current AI diagnosis and reviewer notes before review.
+- Edited reviews require a corrected root cause.
+- Existing reviews can be edited safely without creating a duplicate current review.
+- Re-running diagnosis invalidates the old review for the new diagnosis until re-reviewed.
+- NetSage AI has no automatic fix/apply endpoint.
+
+UI / integration fixes applied
+- Added Edit Review workflow with pre-filled reviewer notes/correction.
+- Added server-side validation so only the current diagnosis/review can be edited.
+- Fixed stale-review display after a diagnosis is re-run.
+- Hardened rule-finding rendering against missing/legacy check-name fields.
+- Fixed duplicate review-form guard in the frontend.
+
+Reproducibility
+- seed_data.py was tested from the submission database and completed successfully.
+- Re-running seed_data.py is safe for the demo state.
+- Python syntax checks passed for all application modules.
+- Dashboard is local HTML/CSS/JS and does not depend on a CDN.
+- JavaScript syntax check passed.
+
+Important demo boundary
+- The included Packet Tracer file remains the lab/topology artifact.
+- NetSage AI proposes the fix; the human/operator performs the configuration
+  change in Packet Tracer and then verifies it, matching the human-review safety
+  requirement.
+
+Target-machine startup
+- From the netsage_ai directory: python -m pip install -r requirements.txt
+- Then: python seed_data.py
+- Then: python app.py
+- Open: http://127.0.0.1:5000
